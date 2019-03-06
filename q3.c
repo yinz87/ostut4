@@ -7,27 +7,33 @@
 struct student{
 	char name[50];
 	char student_id[50];
-	double grade;};
+	double grade;} ;
 
 
-void *bellcurve(struct){
+void *bellcurve(struct student s){
+	s.grade = s.grade *1.5;
 	char buffer[10];
-	grade = grade *1.5;
-	sprintf(buffer,"%.2f",grade);
+	sprintf(buffer,"%.2f",s.grade);
 	printf ("curved grade is %s \n",buffer);
+
+
 }
 
 int main(void)
 {	
-	struct student s;
+	struct student std[5];
 	pthread_t thread[5];
 
 	for (int i = 0; i <5; i++){
-	printf("please enter students's name \n");
-	fgets(&s.name,50,stdin);
-	printf("please enter students's ID \n");
-	fgets(&s.student_id,50,stdin);
-	printf("please enter students's grade out of 100 \n");
-	fgets(&s.grade,50,stdin);}
+		printf("please enter students's name \n");
+		scanf("%s",std[i].name);
+		printf("please enter students's ID \n");
+		scanf("%s",std[i].student_id);
+		printf("please enter students's grade out of 100 in digits \n");
+		scanf("%lf",&std[i].grade);}
 
+	for (int j = 0; j < 5; j++){
+		pthread_create(&thread[j], NULL,(void *)bellcurve(std[j]),NULL);
+}
+	exit(0);
 }

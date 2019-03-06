@@ -21,7 +21,7 @@ int main(void)
 	char buffer[10];
 
 	for (int i = 0; i <5; i++){
-	printf("please enter students's grade out of 100 \n");
+	printf("please enter students's grade out of 100 in digits \n");
 	fgets(grade,20,stdin);
 	double x = atof(grade);
 	grade_list[i] = x;}
@@ -29,4 +29,7 @@ int main(void)
 	for (int j =0; j <5; j++){
 		pthread_create(&thread[j], NULL,(void *)bellcurve(grade_list[j]),NULL);
 	}
+
+	exit(0);
+	
 }
